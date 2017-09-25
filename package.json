@@ -9,7 +9,8 @@
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
-    "publish": "npm run build && surge ./build",
+    "publish":
+      "npm run build && surge ./build --domain 'https://keycodes.surge.sh'",
     "prepush": "npm run publish"
   },
   "keywords": [],
