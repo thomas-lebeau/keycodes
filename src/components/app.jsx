@@ -34,7 +34,8 @@ export default class App extends Component {
 
     return (
       <div>
-        event = {codes ? '{' : <Undef />}
+        <span class="operator"> const </span>event<span class="operator"> = </span>
+        {codes ? '{' : <Undef />}
         <ul>
           {cs.map(c => (
             <Code

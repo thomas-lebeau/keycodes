@@ -16,10 +16,10 @@ export default class Code extends Component {
       <li>
         &nbsp;&nbsp;
         {name}
-        <span class="operator"> = </span>
+        <span class="operator">: </span>
         <span class="string hoverable" onClick={this.handleClick} tabIndex="0">
           '{code}'
-        </span>;
+        </span>,
         {isCopied && <span class="comment"> // Copied to clipboard</span>}
       </li>
     );
