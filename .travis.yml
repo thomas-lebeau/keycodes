@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-- '6.0'
+  - "node"
+  - "lts/*"
+cache:
+  directories:
+    - "node_modules"
+before_install:
+  - npm prune
 script:
-- npm run build
-- npm test
+  - npm run build
+  - npm test
 after_success:
-- npm run deploy
+  - npm run deploy
