@@ -10,5 +10,10 @@ before_install:
 script:
   - npm run build
   - npm test
-after_success:
-  - npm run deploy
+deploy:
+  skip_cleanup: true
+  provider: surge
+  project: ./build/
+  domain: https://keycodes.surge.sh
+  on:
+    node: "lts/*"
