@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint src && preact test",
+    "test": "eslint src",
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
     "publish":
-      "npm run build && surge ./build --domain 'https://keycodes.surge.sh'",
-    "prepush": "npm run publish"
+      "npm run build && surge ./build --domain 'https://keycodes.surge.sh'"
   },
   "keywords": [],
   "author": "Thomas Lebeau <thomas.lebeau@gmail.com>",
