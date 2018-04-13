@@ -20,7 +20,7 @@
   "devDependencies": {
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0",
-    "eslint-config-synacor": "^2.0.2",
+    "eslint-config-synacor": "^3.0.0",
     "husky": "^0.14.3",
     "if-env": "^1.0.0",
     "node-sass": "^4.5.3",
