@@ -21,7 +21,7 @@
     "eslint": "^4.5.0",
     "eslint-config-prettier": "^2.3.0",
     "eslint-config-synacor": "^3.0.1",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0",
     "if-env": "^1.0.0",
     "node-sass": "^4.5.3",
     "preact-cli": "^2.1.0",
