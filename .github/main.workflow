@@ -1,6 +1,9 @@
 workflow "Build and Publish" {
   on = "push"
-  resolves = ["Deploy"]
+  resolves = [
+    "Deploy",
+    "Build",
+  ]
 }
 
 action "Install" {
@@ -16,7 +19,7 @@ action "Test" {
 
 action "Master branch" {
   uses = "actions/bin/filter@master"
-  needs = ["Test"]
+  needs = ["Build"]
   args = "branch master"
 }
 
@@ -28,4 +31,10 @@ action "Deploy" {
     "SURGE_LOGIN",
   ]
   args = "run deploy"
+}
+
+action "Build" {
+  uses = "actions/npm@master"
+  needs = ["Test"]
+  args = "run build"
 }
