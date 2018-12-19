@@ -1,15 +1,15 @@
 workflow "Build and Publish" {
   on = "push"
-  resolves = ["GitHub Action for npm-1"]
+  resolves = ["Test"]
 }
 
-action "GitHub Action for npm" {
-  uses = "actions/npm@c555744"
+action "Install" {
+  uses = "actions/npm@master"
   args = "install"
 }
 
-action "GitHub Action for npm-1" {
-  uses = "actions/npm@c555744"
-  needs = ["GitHub Action for npm"]
+action "Test" {
+  uses = "actions/npm@master"
   args = "test"
+  needs = ["Install"]
 }
