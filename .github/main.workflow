@@ -4,12 +4,12 @@ workflow "Build and Publish" {
 }
 
 action "Unit Test" {
-  uses = "node:10"
+  uses = "docker://node:10"
   runs = "npm test"
 }
 
 action "Build" {
   needs = "Unit Test"
-  uses = "node:10"
-  runs = "npm test"
+  uses = "docker://node:10"
+  runs = "npm run build"
 }
