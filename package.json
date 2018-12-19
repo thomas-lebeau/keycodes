@@ -8,7 +8,8 @@
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
     "build": "preact build",
     "serve": "preact build && preact serve",
-    "dev": "preact watch"
+    "dev": "preact watch",
+    "deploy": "surge --project ./build --token $SURGE_TOKEN"
   },
   "keywords": [],
   "author": "Thomas Lebeau <thomas.lebeau@gmail.com>",
