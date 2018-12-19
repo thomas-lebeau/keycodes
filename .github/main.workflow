@@ -1,15 +1,28 @@
 workflow "Build and Publish" {
   on = "push"
-  resolves = "Build"
+  resolves = ["Deploy"]
 }
 
-action "Unit Test" {
-  uses = "node:10"
-  runs = "npm test"
+action "Install" {
+  uses = "actions/npm@master"
+  args = "install"
 }
 
-action "Build" {
-  needs = "Unit Test"
-  uses = "node:10"
-  runs = "npm test"
+action "Test" {
+  uses = "actions/npm@master"
+  args = "test"
+  needs = ["Install"]
+}
+
+action "Master branch" {
+  uses = "actions/bin/filter@master"
+  needs = ["Test"]
+  args = "branch master"
+}
+
+action "Deploy" {
+  uses = "actions/npm@master"
+  needs = ["Master branch"]
+  secrets = ["SURGE_TOKEN"]
+  args = "run deploy"
 }
