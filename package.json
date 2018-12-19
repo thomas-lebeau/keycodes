@@ -9,7 +9,7 @@
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",
-    "deploy": "surge --project ./build --token $SURGE_TOKEN"
+    "deploy": "surge --project ./build --domain https://keycodes.surge.sh --token $SURGE_TOKEN"
   },
   "keywords": [],
   "author": "Thomas Lebeau <thomas.lebeau@gmail.com>",
