@@ -38,3 +38,15 @@ action "Build" {
   needs = ["Test"]
   args = "run build"
 }
+
+workflow "New workflow" {
+  on = "push"
+  resolves = ["docker://node:10"]
+}
+
+action "docker://node:10" {
+  uses = "docker://node:10"
+  runs = "git"
+  args = "config -l"
+  secrets = ["GITHUB_TOKEN"]
+}
