@@ -1,15 +1,15 @@
 workflow "Build and Publish" {
   on = "push"
-  resolves = "Build"
+  resolves = ["GitHub Action for npm-1"]
 }
 
-action "Unit Test" {
-  uses = "docker://node:10"
-  runs = "npm test"
+action "GitHub Action for npm" {
+  uses = "actions/npm@c555744"
+  args = "install"
 }
 
-action "Build" {
-  needs = "Unit Test"
-  uses = "docker://node:10"
-  runs = "npm run build"
+action "GitHub Action for npm-1" {
+  uses = "actions/npm@c555744"
+  needs = ["GitHub Action for npm"]
+  args = "test"
 }
