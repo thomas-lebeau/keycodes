@@ -23,6 +23,9 @@ action "Master branch" {
 action "Deploy" {
   uses = "actions/npm@master"
   needs = ["Master branch"]
-  secrets = ["SURGE_TOKEN"]
+  secrets = [
+    "SURGE_TOKEN",
+    "SURGE_LOGIN",
+  ]
   args = "run deploy"
 }
