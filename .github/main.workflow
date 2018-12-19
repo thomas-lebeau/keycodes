@@ -39,14 +39,14 @@ action "Build" {
   args = "run build"
 }
 
-workflow "New workflow" {
+workflow "test" {
   on = "push"
   resolves = ["docker://node:10"]
 }
 
 action "docker://node:10" {
   uses = "docker://node:10"
-  runs = "git"
-  args = "config -l"
+  runs = "npm"
+  args = "-v"
   secrets = ["GITHUB_TOKEN"]
 }
