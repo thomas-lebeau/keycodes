@@ -41,10 +41,10 @@ action "Build" {
 
 workflow "test" {
   on = "push"
-  resolves = ["docker://node:10"]
+  resolves = ["docker://node:current"]
 }
 
-action "docker://node:10" {
+action "docker://node:current" {
   uses = "docker://node:10"
   runs = "npm"
   args = "-v"
