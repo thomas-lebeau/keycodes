@@ -45,7 +45,7 @@ workflow "test" {
 }
 
 action "docker://node:current" {
-  uses = "docker://node:10"
+  uses = "docker://node:current"
   runs = "npm"
   args = "-v"
   secrets = ["GITHUB_TOKEN"]
