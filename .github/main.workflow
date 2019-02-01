@@ -14,6 +14,7 @@ action "Install" {
 
 action "Lint" {
   uses = "gimenete/eslint-action@bbfd5ba"
+  secrets = ["GITHUB_TOKEN"]
 }
 
 action "Master branch" {
