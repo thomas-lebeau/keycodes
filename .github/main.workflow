@@ -1,8 +1,9 @@
 workflow "Build and Publish" {
   on = "push"
   resolves = [
-    "Deploy",
     "Build",
+    "Deploy",
+    "Lint",
   ]
 }
 
@@ -11,15 +12,13 @@ action "Install" {
   args = "install"
 }
 
-action "Test" {
-  uses = "actions/npm@master"
-  args = "test"
-  needs = ["Install"]
+action "Lint" {
+  uses = "gimenete/eslint-action@bbfd5ba"
 }
 
 action "Master branch" {
   uses = "actions/bin/filter@master"
-  needs = ["Build", "Test"]
+  needs = ["Build", "Lint"]
   args = "branch master"
 }
 
