@@ -19,7 +19,7 @@ action "Test" {
 
 action "Master branch" {
   uses = "actions/bin/filter@master"
-  needs = ["Build"]
+  needs = ["Build", "Test"]
   args = "branch master"
 }
 
@@ -35,18 +35,6 @@ action "Deploy" {
 
 action "Build" {
   uses = "actions/npm@master"
-  needs = ["Test"]
+  needs = ["Install"]
   args = "run build"
-}
-
-workflow "test" {
-  on = "push"
-  resolves = ["docker://node:current"]
-}
-
-action "docker://node:current" {
-  uses = "docker://node:current"
-  runs = "npm"
-  args = "-v"
-  secrets = ["GITHUB_TOKEN"]
 }
