@@ -1,25 +1,25 @@
 workflow "Build and Publish" {
   on = "push"
   resolves = [
-    "Deploy",
     "Build",
+    "Deploy",
+    "Lint",
   ]
 }
 
 action "Install" {
   uses = "actions/npm@master"
-  args = "install"
+  args = "ci"
 }
 
-action "Test" {
+action "Lint" {
   uses = "actions/npm@master"
   args = "test"
-  needs = ["Install"]
 }
 
 action "Master branch" {
   uses = "actions/bin/filter@master"
-  needs = ["Build"]
+  needs = ["Build", "Lint"]
   args = "branch master"
 }
 
@@ -35,6 +35,6 @@ action "Deploy" {
 
 action "Build" {
   uses = "actions/npm@master"
-  needs = ["Test"]
+  needs = ["Install"]
   args = "run build"
 }
