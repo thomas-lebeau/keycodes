@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint src",
-    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "start": "preact watch",
     "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
+    "preact": "preact",
     "deploy": "surge --project ./build --domain https://keycodes.surge.sh --token $SURGE_TOKEN"
   },
   "keywords": [],
@@ -19,19 +18,18 @@
     "url": "git+https://github.com/thomas-lebeau/keycodes.git"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-config-synacor": "^3.0.1",
+    "eslint": "^5.15.1",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-config-synacor": "^3.0.3",
     "husky": "^1.3.1",
-    "if-env": "^1.0.4",
     "node-sass": "^4.11.0",
-    "preact-cli": "^2.1.0",
-    "sass-loader": "^7.0.1",
+    "preact-cli": "^2.2.1",
+    "sass-loader": "^7.1.0",
     "surge": "^0.20.1"
   },
   "dependencies": {
     "copy-text-to-clipboard": "^1.0.4",
     "decko": "^1.2.0",
-    "preact": "^8.4.2"
+    "preact": "^10.0.0-alpha.1"
   }
 }
