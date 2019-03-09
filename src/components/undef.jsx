@@ -1,8 +1,10 @@
-import { Fragment } from "preact";
+import { h, Fragment } from 'preact';
 
-export const Undef = () => (
-  <Fragment>
-    <span class="undef">undefined</span>
-    {';'}
-  </Fragment>
-);
+export default function Undef() {
+    return (
+        <Fragment>
+            <span className="undef">undefined</span>
+            {';'}
+        </Fragment>
+    );
+}
