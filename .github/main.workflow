@@ -12,8 +12,15 @@ action "Install" {
   args = "ci"
 }
 
+action "Build" {
+  uses = "actions/npm@master"
+  needs = ["Install"]
+  args = "run build"
+}
+
 action "Lint" {
   uses = "actions/npm@master"
+  needs = ["Install"]
   args = "test"
 }
 
@@ -31,10 +38,4 @@ action "Deploy" {
     "SURGE_LOGIN",
   ]
   args = "run deploy"
-}
-
-action "Build" {
-  uses = "actions/npm@master"
-  needs = ["Install"]
-  args = "run build"
 }

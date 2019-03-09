@@ -7,7 +7,6 @@
     "test": "eslint src",
     "start": "preact watch",
     "build": "preact build",
-    "preact": "preact",
     "deploy": "surge --project ./build --domain https://keycodes.surge.sh --token $SURGE_TOKEN"
   },
   "keywords": [],
@@ -29,7 +28,6 @@
   },
   "dependencies": {
     "copy-text-to-clipboard": "^1.0.4",
-    "decko": "^1.2.0",
     "preact": "^10.0.0-alpha.1"
   }
 }
