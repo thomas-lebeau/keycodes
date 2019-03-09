@@ -1,55 +1,46 @@
-import { h, Component } from 'preact';
-import { bind } from 'decko';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 
 import { Help } from './help';
 import { Undef } from './undef';
-import Code from './code';
+import { Code } from './code';
+import { useEventListener } from '../hooks/useEventListener';
 
-export default class App extends Component {
-  @bind
-  handleKeydown({ code, key, keyCode }) {
-    this.setState({
-      copied: undefined,
-      codes: {
-        code,
-        key,
-        keyCode,
-      },
-    });
+export const App = ()  => {
+  const [codes, setCodes] = useState([]);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = name => setCopied(name);
+  const handleKeydown = ({ code, key, keyCode }) => {
+    setCopied(false);
+    setCodes({
+      code,
+      key,
+      keyCode,
+    })
   }
 
-  @bind
-  handleCopy(name) {
-    this.setState({
-      copied: name,
-    });
-  }
+  useEventListener('keydown', handleKeydown);
 
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeydown);
-  }
-
-  render({}, { codes, copied }) {
-    const cs = codes ? Object.entries(codes) : [];
-
-    return (
-      <div>
-        <span class="operator"> const </span>event<span class="operator"> = </span>
-        {codes ? '{' : <Undef />}
-        <ul>
-          {cs.map(c => (
-            <Code
-              name={c[0]}
-              code={c[1]}
-              onCopy={this.handleCopy}
-              isCopied={c[0] === copied}
-            />
-          ))}
-          {codes && <li class="comment">&nbsp;&nbsp;// ...</li>}
-        </ul>
-        {codes && '};'}
-        <Help />
-      </div>
-    );
-  }
+  return (
+    <main>
+      <span class="operator"> const </span>event<span class="operator"> = </span>
+      {codes ? '{' : <Undef />}
+      <ul>
+        {Object.entries(codes).map(c => (
+          <Code
+            name={c[0]}
+            code={c[1]}
+            onCopy={handleCopy}
+            isCopied={c[0] === copied}
+          />
+        ))}
+        {codes && <li class="comment">&nbsp;&nbsp;// ...</li>}
+      </ul>
+      {codes && '};'}
+      <Help />
+    </main>
+  );
 }
+
+export default App;

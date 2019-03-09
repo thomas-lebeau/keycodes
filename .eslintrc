@@ -1,5 +1,6 @@
 {
   "extends": ["eslint-config-synacor", "prettier", "prettier/react"],
+  "root": true,
   "rules": {
     "react/jsx-no-comment-textnodes": 0,
     "react/no-unknown-property": [

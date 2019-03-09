@@ -1,6 +1,8 @@
+import { Fragment } from "preact";
+
 export const Undef = () => (
-  <span>
+  <Fragment>
     <span class="undef">undefined</span>
     {';'}
-  </span>
+  </Fragment>
 );
