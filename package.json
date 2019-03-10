@@ -9,8 +9,10 @@
     "size": "size-limit",
     "build": "parcel build src/index.html --experimental-scope-hoisting",
     "deploy": "surge --project ./dist --token $SURGE_TOKEN",
-    "copy": "cp ./src/CNAME ./dist",
     "clean": "rimraf ./dist",
+    "copy": "npm run copy:cname && npm run copy:favicon",
+    "copy:cname": "cp ./src/CNAME ./dist",
+    "copy:favicon": "cp ./src/favicon.ico ./dist",
     "postbuild": "npm run copy && npm run size",
     "prebuild": "npm test && npm run clean"
   },
