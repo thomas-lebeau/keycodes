@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "eslint .",
-    "build": "parcel build src/index.html",
+    "prebuild": "npm run clean",
+    "build": "parcel build src/index.html --experimental-scope-hoisting",
     "start": "parcel src/index.html",
+    "clean": "rimraf ./dist",
     "deploy": "surge --project ./dist --domain https://keycodes.surge.sh --token $SURGE_TOKEN"
   },
   "keywords": [],
@@ -20,6 +22,7 @@
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "browserslist-config-google": "^1.5.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.6.0",
@@ -29,6 +32,7 @@
     "husky": "^1.3.1",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
     "surge": "^0.20.1"
   },
   "dependencies": {
@@ -36,7 +40,9 @@
     "preact": "^10.0.0-alpha.1",
     "prop-types": "^15.7.2"
   },
-  "browserslist": {},
+  "browserslist": [
+    "extends browserslist-config-google/modern"
+  ],
   "babel": {
     "plugins": [
       "transform-react-remove-prop-types",
