@@ -22,16 +22,14 @@ body {
     line-height: 1.5em;
 }
 
-h1 {
-    font-weight: normal;
-}
-
 a {
     color: currentColor;
 }
 
+a:focus,
 a:hover {
     color: #87e9fe;
+    outline: none;
 }
 
 ul,
@@ -43,6 +41,7 @@ button {
     background-color: transparent;
     border: none;
     font-size: inherit;
+    font-family: inherit;
 }
 
 .hoverable {
@@ -51,12 +50,9 @@ button {
     cursor: pointer;
 }
 
+.hoverable:focus,
 .hoverable:hover {
     background-color: #44475b;
-}
-
-.hoverable:focus {
-    background-color: lighten(#44475b, 20%);
     outline: none;
 }
 
