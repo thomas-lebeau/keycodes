@@ -8,17 +8,20 @@ import useEventListener from '../hooks/useEventListener';
 
 export default function App() {
     const [codes, setCodes] = useState([]);
-    const [copied, setCopied] = useState(false);
+    const [copied, setCopied] = useState();
+    const hasCodes = !!codes.length;
 
     const handleCopy = name => setCopied(name);
 
     const handleKeydown = ({ code, key, keyCode }) => {
-        setCopied(false);
-        setCodes({
-            code,
-            key,
-            keyCode,
-        });
+        setCopied();
+        setCodes(
+            Object.entries({
+                code,
+                key,
+                keyCode,
+            })
+        );
     };
 
     const renderCode = ([name, code]) => (
@@ -37,12 +40,12 @@ export default function App() {
         <Fragment>
             <span className="operator"> const </span>event
             <span className="operator"> = </span>
-            {codes ? '{' : <Undef />}
+            {hasCodes ? '{' : <Undef />}
             <ul>
-                {Object.entries(codes).map(renderCode)}
-                {codes && <li className="comment">&nbsp;&nbsp;// ...</li>}
+                {codes.map(renderCode)}
+                {hasCodes && <li className="comment">&nbsp;&nbsp;// ...</li>}
             </ul>
-            {codes && '};'}
+            {hasCodes && '};'}
             <Help />
         </Fragment>
     );
