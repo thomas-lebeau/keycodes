@@ -4,12 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint .",
-    "prebuild": "npm run clean",
-    "build": "parcel build src/index.html --experimental-scope-hoisting",
     "start": "parcel src/index.html",
+    "test": "eslint .",
+    "size": "size-limit",
+    "build": "parcel build src/index.html --experimental-scope-hoisting",
+    "deploy": "surge --project ./dist --token $SURGE_TOKEN",
+    "copy": "cp ./src/CNAME ./dist",
     "clean": "rimraf ./dist",
-    "deploy": "surge --project ./dist --domain https://keycodes.surge.sh --token $SURGE_TOKEN"
+    "postbuild": "npm run copy && npm run size",
+    "prebuild": "npm test && npm run clean"
   },
   "keywords": [],
   "author": "Thomas Lebeau <thomas.lebeau@gmail.com>",
@@ -33,6 +36,7 @@
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",
     "rimraf": "^2.6.3",
+    "size-limit": "^0.21.1",
     "surge": "^0.20.1"
   },
   "dependencies": {
@@ -40,6 +44,29 @@
     "preact": "^10.0.0-alpha.1",
     "prop-types": "^15.7.2"
   },
+  "size-limit": [
+    {
+      "path": [
+        "./dist/*.js"
+      ],
+      "limit": "5 KB",
+      "webpack": false
+    },
+    {
+      "path": [
+        "./dist/*.css"
+      ],
+      "limit": "0.5 KB",
+      "webpack": false
+    },
+    {
+      "path": [
+        "./dist/*.html"
+      ],
+      "limit": "0.5 KB",
+      "webpack": false
+    }
+  ],
   "browserslist": [
     "extends browserslist-config-google/modern"
   ],
@@ -68,9 +95,6 @@
     "env": {
       "browser": true,
       "es6": true
-    },
-    "rules": {
-      "react/react-in-jsx-scope": "off"
     },
     "settings": {
       "react": {
